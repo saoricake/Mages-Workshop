@@ -1,0 +1,43 @@
+:root {
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 1% auto;
+	width: min(900px, 98%);
+}
+
+table {
+	display: grid;
+	grid-template-columns: max-content minmax(min-content, 1fr) repeat(5, max-content) minmax(min-content, 1fr);
+}
+
+thead, tbody, tr {
+	display: contents;
+}
+
+th, td {
+	margin-bottom: -1px;
+	margin-right: -1px;
+	padding: 1rem;
+}
+
+th {
+	color: white;
+	background-color: #1F2F4F;
+}
+
+td {
+	border: 1px solid #DCDCDC;
+	text-align: center;
+}
+
+tr:nth-child(even) td {
+	background-color: #FFFFFF;
+}
+
+tr:nth-child(odd) td {
+	background-color: #F5F5F5;
+}
