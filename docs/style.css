@@ -5,13 +5,18 @@
 
 body {
 	box-sizing: border-box;
-	margin: 1% auto;
-	width: min(900px, 98%);
+	margin: 1rem auto;
+	width: min(900px, (100% - 2rem));
 }
 
 table {
 	display: grid;
-	grid-template-columns: max-content minmax(min-content, 1fr) repeat(5, max-content) minmax(min-content, 1fr);
+	grid-template-columns:
+		max-content
+		minmax(max-content, 1fr)
+		minmax(min-content, max-content)
+		max-content
+		repeat(5, minmax(max-content, 1fr));
 }
 
 thead, tbody, tr {
@@ -22,6 +27,18 @@ th, td {
 	margin-bottom: -1px;
 	margin-right: -1px;
 	padding: 1rem;
+}
+
+tr td:nth-of-type(2), tr td:last-of-type {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	justify-content: center;
+	padding: 0;
+}
+
+img {
+	margin: 0 1rem;
 }
 
 th {
