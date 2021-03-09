@@ -1,14 +1,13 @@
 import {filterData, sortData, computeStats} from './data.js';
 
 const ceSearch = document.forms[0];
-const ceTable = document.querySelector("tbody");
-const ceDataComplete = fetch("./data/nice_equip.json").then(response => response.json());
-async function updateTable(data) {
-	let ceSearchParams = new FormData(ceSearch);
-	let ceDataFiltered = filterData(await data, ceSearchParams);
-	sortData(ceDataFiltered, "collectionNo", "asc");
-	ceTable.innerHTML = "";
-	ceDataFiltered.forEach(ce => {
+const ceTableHeaders = Array.from(document.getElementsByTagName("th"));
+const ceTableBody = document.querySelector("tbody");
+const ceDataComplete = fetch("./data/nice_equip.json")
+	.then(r => r.json());
+
+async function printData(data) {
+	(await data).forEach(ce => {
 		let ceNo = ce["collectionNo"];
 		let ceThumb = ce["extraAssets"]["equipFace"]["equip"][ce["id"]];
 		let ceName = ce["name"];
@@ -20,10 +19,9 @@ async function updateTable(data) {
 		let ceSkillIcon = ce["skills"][0]["icon"];
 		let ceSkillDesc = ce["skills"][0]["detail"] + (ce["skills"][1] ? `\n${ce["skills"][1]["detail"]}` : "");
 		let tableRow =
-		`<tr>
+		`<tr class="visible">
 			<td>${ceNo}</td>
-			<td><img src=${ceThumb} loading="lazy" height=30></td>
-			<td>${ceName}</td>
+			<td><img src=${ceThumb} loading="lazy" height=30>${ceName}</td>
 			<td>${ceRarity}</td>
 			<td>${ceHpMin}</td>
 			<td>${ceHpMax}</td>
@@ -31,11 +29,21 @@ async function updateTable(data) {
 			<td>${ceAtkMax}</td>
 			<td><img src=${ceSkillIcon} alt="${ceSkillDesc}" title="${ceSkillDesc}" loading="lazy" height=30></td>
 		</tr>`;
-		ceTable.insertAdjacentHTML("beforeend", tableRow);
+		ceTableBody.insertAdjacentHTML("beforeend", tableRow);
 	})
+	sortData(ceTableHeaders, ceTableBody, ceTableHeaders[0]);
 }
-for (let i = 0; i < ceSearch.elements.length; i++) {
-	ceSearch.elements[i].addEventListener("input", () => updateTable(ceDataComplete));
+async function listenerFilter() {
+	filterData(ceTableBody, ceSearch);
+}
+async function listenerSort(event) {
+	sortData(ceTableHeaders, ceTableBody, event.target);
 }
 
-updateTable(ceDataComplete);
+for (let i = 0; i < ceSearch.elements.length; i++) {
+	ceSearch.elements[i].addEventListener("input", listenerFilter);
+}
+for (let i = 0; i < ceTableHeaders.length - 1; i++) {
+	ceTableHeaders[i].addEventListener("click", listenerSort);
+}
+printData(ceDataComplete);
