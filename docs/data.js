@@ -1,12 +1,13 @@
-export function filterData(tableBody, searchForm) {
-	const searchFormData = new FormData(searchForm)
+export function filterData(table, form) {
+	const tableRows = Array.from(table.tBodies[0].rows);
+	const searchFormData = new FormData(form);
+
 	const searchName = searchFormData.get("name");
 	const searchRarity = (searchFormData.getAll("rarity")).join("|");
-	const searchHpMin = (searchFormData.get("hpBase") === "" ? String.raw`\d{0,4}` : searchFormData.get("hpBase"));
-	const searchHpMax = (searchFormData.get("hpMax") === "" ? String.raw`\d{0,4}` : searchFormData.get("hpMax"));
-	const searchAtkMin = (searchFormData.get("atkBase") === "" ? String.raw`\d{0,4}` : searchFormData.get("atkBase"));
-	const searchAtkMax = (searchFormData.get("atkMax") === "" ? String.raw`\d{0,4}` : searchFormData.get("atkMax"));
-	const tableRows = Array.from(tableBody.rows);
+	const searchHpMin = searchFormData.get("hpBase");
+	const searchHpMax = searchFormData.get("hpMax");
+	const searchAtkMin = searchFormData.get("atkBase");
+	const searchAtkMax = searchFormData.get("atkMax");
 	
 	tableRows.forEach(v => {
 		if (
@@ -21,12 +22,25 @@ export function filterData(tableBody, searchForm) {
 		} else {
 			v.classList.add("hidden");
 		}
-	})
+	});
+
+	const tableRowsVisible = Array.from(document.querySelectorAll("tbody tr:not(.hidden)"));
+
+	tableRowsVisible.forEach((v, i) => {
+		if ((i & 1) === 1) {
+			v.classList.add("zebra");
+		} else {
+			v.classList.remove("zebra");
+		}
+	});
 }
 
-export function sortData(tableHeaders, tableBody, targetTh) {
-	const targetThClasses = targetTh.classList;
+export function sortData(table, targetTh) {
+	const tableBody = table.tBodies[0];
+	const tableHeaders = Array.from(table.tHead.rows[0].cells);
 	const tableRows = Array.from(tableBody.rows);
+
+	const targetThClasses = targetTh.classList;
 	const collatorOptions = {
 		sensitivity: "base",
 		ignorePunctuation: "true",
@@ -50,7 +64,14 @@ export function sortData(tableHeaders, tableBody, targetTh) {
 			return sortParams.compare(firstRowSortValue, secondRowSortValue);
 		}
 	});
-	tableRows.forEach(row => tableBody.appendChild(row));
+	tableRows.forEach((v, i) => {
+		tableBody.appendChild(v);
+		if ((i & 1) === 1) {
+			v.classList.add("zebra");
+		} else {
+			v.classList.remove("zebra");
+		}
+	});
 }
 
 export function computeStats(data) {
