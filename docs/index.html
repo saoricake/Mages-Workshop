@@ -9,77 +9,50 @@
 
 	<body>
 
-		<form id="ceSearch">
-			<fieldset><legend>Name</legend>
-				<input type="search" name="name" id="name" value="">
+		<form>
+
+			<label>Name</label>
+			<fieldset>
+				<legend>Name</legend>
+				<input type="text" name="name" id="name" value="">
 			</fieldset>
-			<fieldset><legend>Rarity</legend>
+
+			<label>Rarity</label>
+			<fieldset>
+				<legend>Rarity</legend>
 				<label><input type="checkbox" name="rarity" value="1">1</label>
 				<label><input type="checkbox" name="rarity" value="2">2</label>
 				<label><input type="checkbox" name="rarity" value="3">3</label>
 				<label><input type="checkbox" name="rarity" value="4">4</label>
 				<label><input type="checkbox" name="rarity" value="5">5</label>
 			</fieldset>
-			<fieldset><legend>Stats</legend>
-				<label>Minimum HP
-					<!-- <select name="hpBase">
-						<option value="et">equal to</option>
-						<option value="net">not equal to</option>
-						<option value="gt">greater than</option>
-						<option value="lt">less than</option>
-						<option value="gtet">greater than or equal to</option>
-						<option value="ltet">less than or equal to</option>
-					</select> -->
-					<input type="number" name="hpBase" value="">
-				</label><br>
-				<label>Maximum HP
-					<!-- <select name="hpMax" id="hpMaxCompare">
-						<option value="et">equal to</option>
-						<option value="net">not equal to</option>
-						<option value="gt">greater than</option>
-						<option value="lt">less than</option>
-						<option value="gtet">greater than or equal to</option>
-						<option value="ltet">less than or equal to</option>
-					</select> -->
-					<input type="number" name="hpMax" value="">
-				</label><br>
-				<label>Minimum Attack
-					<!-- <select name="atkBase">
-						<option value="et">equal to</option>
-						<option value="net">not equal to</option>
-						<option value="gt">greater than</option>
-						<option value="lt">less than</option>
-						<option value="gtet">greater than or equal to</option>
-						<option value="ltet">less than or equal to</option>
-					</select> -->
-					<input type="number" name="atkBase" value="">
-				</label><br>
-				<label>Maximum Attack
-					<!-- <select name="atkMax">
-						<option value="et">equal to</option>
-						<option value="net">not equal to</option>
-						<option value="gt">greater than</option>
-						<option value="lt">less than</option>
-						<option value="gtet">greater than or equal to</option>
-						<option value="ltet">less than or equal to</option>
-					</select> -->
-					<input type="number" name="atkMax" value="">
-				</label>
+
+			<label>Stats</label>
+			<fieldset>
+				<legend>Stats</legend>
+				<label for="hpBase">Minimum HP</label>
+				<select name="hpBase" id="hpBase"><option value="\d{0,4}">any</option></select>
+				<label for="hpMax">Maximum HP</label>
+				<select name="hpMax" id="hpMax"><option value="\d{0,4}">any</option></select>
+				<label for="atkBase">Minimum Attack</label>
+				<select name="atkBase" id="atkBase"><option value="\d{0,4}">any</option></select>
+				<label for="atkMax">Maximum Attack</label>
+				<select name="atkMax" id="atkMax"><option value="\d{0,4}">any</option></select>
 			</fieldset>
+
 		</form>
 
 		<table>
 			<thead>
 				<tr>
-					<th scope="col">No.</th>
-					<th scope="col">Image</th>
-					<th scope="col">Name</th>
-					<th scope="col">Rarity</th>
-					<th scope="col">Min HP</th>
-					<th scope="col">Max HP</td>
-					<th scope="col">Min ATK</th>
-					<th scope="col">Max ATK</td>
-					<th scope="col">Skill</td>
+					<th scope="col" tabindex="0">No.</th>
+					<th scope="col" tabindex="0">Name</th>
+					<th scope="col" tabindex="0">Rarity</th>
+					<th scope="col" tabindex="0">Min HP</th>
+					<th scope="col" tabindex="0">Max HP</th>
+					<th scope="col" tabindex="0">Min ATK</th>
+					<th scope="col" tabindex="0">Max ATK</th>
+					<th scope="col" tabindex="0">Skill</th>
 				</tr>
 			</thead>
 			<tbody>

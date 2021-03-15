@@ -4,57 +4,139 @@
 }
 
 body {
+	display: grid;
+		align-items: start;
+		gap: 8px;
+		grid-template-columns: max-content 1fr;
+}
+
+form {
+	display: grid;
+		grid-template-columns: repeat(2, max-content);
+		grid-template-rows: repeat(3, max-content);
+	position: sticky;
+	top: 8px;
+}
+
+form > label {
+	background-color: #1F2F4F;
+	color: white;
+	font-weight: bold;
+	padding: 0.5rem;
+}
+
+fieldset {
+	all: unset;
+	border: 1px solid #DCDCDC;
+	margin-bottom: -1px;
+	padding: 0.5rem;
+}
+
+legend {
+	all: unset;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+}
+
+input[type="text"] {
 	box-sizing: border-box;
-	margin: 1rem auto;
-	width: min(900px, (100% - 2rem));
+	width: 100%;
+}
+
+fieldset:nth-of-type(2) {
+	display: flex;
+		justify-content: space-between;
+}
+
+input[type="checkbox"] {
+	margin: 0;
+	margin-right: 3px;
+	vertical-align: middle;
+}
+
+fieldset:last-of-type {
+	display: grid;
+		gap: 3px 1rem;
+		grid-template-columns: repeat(2, max-content);
+		grid-template-rows: repeat(4, 1fr);
 }
 
 table {
 	display: grid;
-	grid-template-columns:
-		max-content
-		minmax(max-content, 1fr)
-		minmax(min-content, max-content)
-		max-content
-		repeat(5, minmax(max-content, 1fr));
+		grid-template-columns: max-content minmax(min-content, 1fr) repeat(6, max-content);
+	justify-self: center;
+	width: min(100%, 900px);
 }
 
 thead, tbody, tr {
 	display: contents;
 }
 
+tr.zebra td {
+	background-color: #F5F5F5;
+}
+
+tr.hidden {
+	display: none;
+}
+
 th, td {
 	margin-bottom: -1px;
 	margin-right: -1px;
-	padding: 1rem;
-}
-
-tr td:nth-of-type(2), tr td:last-of-type {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	justify-content: center;
-	padding: 0;
-}
-
-img {
-	margin: 0 1rem;
 }
 
 th {
 	color: white;
 	background-color: #1F2F4F;
+	padding: 0.75rem 0.5rem;
+	position: sticky;
+	text-align: start;
+	top: 0;
+	user-select: none;
+	white-space: nowrap;
+}
+
+th:not(:last-child) {
+	cursor: pointer;
+}
+
+th:not(:last-child):hover,
+th:not(:last-child):focus {
+	background-color: #4F5F7F;
+}
+
+th::after {
+	content: "";
+	float: right;
+	margin-left: 0.25rem;
+	width: 1rem;
+}
+
+th.sortTarget::after {
+	content: "\25BC";
+}
+
+th.sortTarget.sortDesc::after {
+	content: "\25B2";
 }
 
 td {
+	display: flex;
+		align-items: center;
+		justify-content: center;
+	background-color: #FFFFFF;
 	border: 1px solid #DCDCDC;
 	text-align: center;
 }
 
-tr:nth-child(even) td {
-	background-color: #FFFFFF;
+td:nth-child(2) {
+	justify-content: flex-start;
+	padding-right: 0.5rem;
+	text-align: left;
 }
 
-tr:nth-child(odd) td {
-	background-color: #F5F5F5;
+img {
+	margin: 0.5rem;
 }
