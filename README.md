@@ -1,453 +1,204 @@
-# Data Lovers
+# Mage's Workshop
 
-## Índice
-
-* [1. Preâmbulo](#1-preâmbulo)
-* [2. Resumo do projeto](#2-resumo-do-projeto)
-* [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-* [4. Considerações gerais](#4-considerações-gerais)
-* [5. Critérios mínimos de aceitação do
-  projeto](#5-critérios-mínimos-de-aceitação-do-projeto)
-* [6. Hacker edition](#6-hacker-edition)
-* [7. Considerações técnicas](#7-considerações-técnicas)
-* [8. Pistas, dicas e leituras
-  complementares](#8-pistas-dicas-e-leituras-complementares)
-* [9. Checklist](#9-checklist)
+_mage's workshop_ is a database for craft essences from aniplex and type-moon's mobile game, [_fate/grand order_](https://fate-go.us/)!
 
 ***
 
-## 1. Preâmbulo
-
-Segundo a
-[Forbes](https://www.forbes.com/sites/bernardmarr/2018/05/21/how-much-data-do-we-create-every-day-the-mind-blowing-stats-everyone-should-read)
-90% dos dados que existem hoje foram gerados durante os últimos dois anos. A
-cada dia geramos 2.5 milhões de terabytes de dados, uma cifra sem precedentes.
-
-Apesar disso, os dados por si só são de pouca utilidade. Para que essas grandes
-quantidades de dados se convertam em **informação** compreensível para os
-usuários, precisamos entender e processar estes dados. Uma forma simples de
-fazer isso é criando _interfaces_ e _visualizações_.
-
-Na imagem seguinte, você pode ver como os dados que estão na parte esquerda
-podem ser usados para construir a interface amigável e compreensível que está na
-parte direita.
-
-![json-interface](https://lh4.googleusercontent.com/Tn-RPXS26pVvOTdUzRT1KVaJ-_QbFs9SpcGLxSPE43fgbHaXtFgMUInuDt7kV41DkT1j8Tt29V0LxQW7SMtC6digOIhfTXSBKdwI08wUwhD3RAqlwy0hjfmhZ2BFe91mtmCSEqysfgk)
-
-## 2. Resumo do projeto
-
-Neste projeto você **construirá uma _página web_ para visualizar um _conjunto
-(set) de dados_** que se adeque às necessidades de seu usuário.
-
-Como entregável final terá uma página web que permita **visualizar dados,
-filtrá-los, ordená-los e fazer algum cálculo agregado**. Por cálculo agregado
-nos referimos aos diversos cálculos que podem ser feitos com os dados para
-mostrar a informação mais relevante para os usuários (médias, valores máximos e
-mínimos, etc).
-
-Para este projeto trazemos uma série de dados de _temáticas diferentes_ para que
-você explore e decida com qual delas deseja trabalhar. Escolhemos
-especificamente estes conjuntos de dados porque cremos que se adequem bem a esta
-etapa de sua aprendizagem.
-
-Uma vez que você defina sua área de interesse, busque entender quem é seu
-usuário e o que exatamente ele necessita saber ou ver, para que assim possa
-construir a interface que o ajude a interagir e entender melhor os dados.
-
-Este são os dados que propomos:
-
-* [Pokémon](src/data/pokemon/pokemon.json): Neste conjunto você encontrará uma
-  lista com os 251 Pokémon da região de Kanto e Johto, com suas respectivas estatísticas
-  utilizadas no jogo [Pokémon GO](http://pokemongolive.com).
-  - [Pesquisa com jogadores de Pokémon Go](src/data/pokemon/README.pt-BR.md)
-
-* [League of Legends - Challenger leaderboard](src/data/lol/lol.json): Este
-  conjunto mostra a lista de jogadores de uma liga do jogo League of Legends
-  (LoL).
-  - [Pesquisa com jogadores de LoL](src/data/lol/README.pt-BR.md)
-
-* [Rick and Morty](src/data/rickandmorty/rickandmorty.json). Lista de
-  personagens da série Rick & Morty. Você pode revisar a documentação da API
-  neste [link](https://rickandmortyapi.com).
-  - [Pesquisa com seguidores de Rick and
-    Morty](src/data/rickandmorty/README.pt-BR.md)
-
-## 3. Objetivos de aprendizagem
-
-O objetivo principal deste projeto é que aprenda a desenhar e construir uma
-interface web onde se possa visualizar e manipular dados, entendendo o que o
-usuário necessita.
-
-Em outras palavras, você aprenderá a:
-
-### HTML e CSS
-
-* [ ] [Uso de HTML semântico.](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
-* [ ] Uso de seletores de CSS.
-* [ ] Construir sua aplicação respeitando o desenho realizado (protótipo).
-* [ ] [Uso de flexbox em CSS.](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-
-### DOM e Web APIs
-
-* [ ] Uso de seletores de DOM.
-* [ ] Gerenciamento de eventos de DOM.
-* [ ] [Manipulação dinâmica de DOM.](https://developer.mozilla.org/pt-BR/docs/DOM/Referencia_do_DOM/Introdu%C3%A7%C3%A3o)
-(appendChild |createElement | createTextNode| innerHTML | textContent | etc.)
-
-### JavaScript
-
-* [ ] Uso de condicionais (if-else | switch | operador ternário)
-* [ ] Uso de laços (for | for..in | for..of | while)
-* [ ] Uso de funções (parâmetros | argumentos | valor de retorno)
-* [ ] Manipular arrays (filter | map | sort | reduce)
-* [ ] Manipular objects (key | value)
-* [ ] Uso ES modules ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-| [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
-* [ ] Diferenciar entre expression e statements.
-* [ ] Diferenciar entre tipos de dados atômicos e estruturados.
-
-### Testing
-
-* [ ] [Teste unitário.](https://jestjs.io/docs/pt-BR/getting-started)
-
-### Estrutura do código e guia de estilo
-
-* [ ] Organizar e dividir o código em módulos (Modularização)
-* [ ] Uso de identificadores descritivos (Nomenclatura | Semântica)
-* [ ] Uso de linter (ESLINT)
-
-### Git e GitHub
-
-* [ ] Uso de comandos de git (add | commit | pull | status | push)
-* [ ] Gerenciar repositórios de GitHub (clone | fork | gh-pages)
-* [ ] Colaboração no Github (branches | pull requests | |tags)
-
-## 4. Considerações gerais
-
-* Este projeto será executado em duplas.
-* Este projeto será entregue através do GitHub e a interface deve ser publicada
-  no [GitHub Pages](https://pages.github.com/).
-* Tempo para completá-lo: 3 semanas.
-
-## 5. Critérios mínimos de aceitação do projeto
-
-Os critérios considerados para que tenha terminado este projeto são:
-
-### Definição de produto
-
-Documente brevemente seu trabalho no arquivo `README.md` de seu repositório,
-contando como foi o processo de desenho e como você acredita que o produto possa
-resolver o problema (ou problemas) de seu usuário.
-
-### Histórias de usuário
-
-Uma vez que entenda a necessidade dos usuários, escreva as [Historias de
-Usuario](https://pt.wikipedia.org/wiki/Hist%C3%B3ria_de_usu%C3%A1rio) que
-representem tudo que o usuário precisa fazer/ver. As **histórias de usuário**
-devem ser o resultado de seu processo de investigação/pesquisa de seus usuários.
-
-Não esqueça de incluir a definição de pronto (_definition of done_) e os
-critérios de aceitação para cada uma.
-
-Na medida do possível, termine uma história de usuário antes de passar para a
-seguinte (cumpra com as definições de pronto + critérios de aceitação).
-
-### Desenho de interface do usuário
-
-#### Protótipo de baixa fidelidade
-
-Durante seu trabalho você deverá fazer e iterar rascunhos de sua solução usando
-lápis e papel. Recomendamos que fotografe todas as iterações que fizer, suba
-para seu repositório e as mencione no `README.md`.
-
-#### Testes de usabilidade
-
-Durante o desafio você deverá fazer testes de usabilidade com usuários
-diferentes, e com base nos resultados desses testes, iterar seus desenhos de
-interface. Conte-nos quais problemas de usabilidade você detectou através dos
-testes e como os resolveu na proposta final.
-
-### Implementação da interface de usuário (HTML/CSS/JS)
-
-Após desenhar sua interface de usuário, deverá trabalhar na sua implementação.
-**Não** é necessário que construa a interface exatamente da mesma forma que
-desenhou. Terá um tempo limitado para trabalhar no projeto, então você deve
-priorizar as tarefas.
-
-No mínimo, sua implementação deverá:
-
-1. Mostrar os dados em uma interface: pode ser em cards, tabelas, listas, etc.
-2. Permitir ao usuário interagir com a interface para obter as informações que
-   necessita;
-3. Ser _responsiva_, ou seja, deve ser visualizada sem problemas a partir de
-   diversos tamanhos de tela: celulares, tablets, notebooks, etc.
-
-### Testes unitários
-
-O _boilerplate_ do projeto não inclui testes unitários. Assim, você terá que
-escrever seus próprios testes para as funções encarregadas de _processar_,
-_filtrar_ e _ordenar_ os dados, assim como _calcular_ estatísticas.
-
-Seus testes unitários devem ter cobertura mínima de 70% de _statements_
-(_sentenças_), _functions_ (_funções_), _lines_ (_linhas_), e _branches_
-(_ramos_) do arquivo `src/data.js`, que irá conter suas funções e que está
-detalhado na seção de [Considerações técnicas](#srcdatajs).
-
-## 6. Hacker edition
-
-As seções chamadas _Hacker Edition_ são **opcionais**. Se já tiver terminado
-todos os requisitos anteriores e tiver tempo, pode tentar completá-las. Dessa
-forma, você pode aprofundar e/ou exercitar mais os objetivos de aprendizagem
-deste projeto.
-
-Features/características extra sugeridas:
-
-* Ao invés de consumir dados estáticos do repositório, pode fazer isso de forma
-  dinâmica, carregando um arquivo JSON com `fetch`. A pasta `src/data` contém
-  uma versão `.js` e uma `.json` de cada conjunto de dados.
-* Adicione à sua interface visualização de dados em forma de gráficos. Para
-  isso, recomendamos explorar bibliotecas de gráficos como
-  [Chart.js](https://www.chartjs.org/) ou [Google
-  Charts](https://developers.google.com/chart/).
-* 100% de cobertura nos testes.
-
-## 7. Considerações técnicas
-
-A lógica do projeto deve estar implementada somente em JavaScript (ES6), HTML e
-CSS. Neste projeto não está permitido o uso de bibliotecas e frameworks, apenas
-[vanilla
-JavaScript](https://medium.com/laboratoria-how-to/vanillajs-vs-jquery-31e623bbd46e),
-com exceção das bibliotecas para gráficos (ver [_Parte
-opcional_](#6-hacker-edition) acima).
-
-Não se deve utilizar a _pseudo-variável_ `this`.
-
-O _boilerplate_ contém uma estrutura de arquivos como ponto de partida, assim
-como toda a configuração de dependências:
-
-```text
-.
-├── EXTRA.md
-├── README.md
-├── package.json
-├── src
-|  ├── data (de acordo com o data que forem trabalhar)
-|  |  ├── lol
-|  |  |  ├── lol.js
-|  |  |  ├── lol.json
-|  |  |  └── README.md
-|  |  ├── pokemon
-|  |  |  ├── pokemon.js
-|  |  |  ├── pokemon.json
-|  |  |  └── README.md
-|  |  └── rickandmorty
-|  |     ├── rickandmorty.js
-|  |     └── rickandmorty.json
-|  |     └── README.md
-|  ├── data.js
-|  ├── index.html
-|  ├── main.js
-|  └── style.css
-└── test
-   └── data.spec.js
-
-directory: 6 file: 17
-```
-
-### `src/index.html`
-
-Como no projeto anterior, existe um arquivo `index.html`. Como já sabe, aqui
-entra a página que vai ser exibida ao usuário. Também serve para indicar quais
-scripts serão utilizados e juntar tudo o que foi feito.
-
-### `src/main.js`
-
-Recomendamos que utilize `src/main.js` para todos os códigos que tenham a ver
-com a exibição dos dados na tela. Com isto nos referimos basicamente à interação
-com o DOM. Operações como criação de nós, registro de manejadores de eventos
-(_event listeners_ ou _event handlers_) e etc.
-
-Esta não é a única forma de dividir seu código. Pode utilizar mais arquivos e
-pastas, sempre e quando a estrutura estiver clara para suas colegas.
-
-Neste arquivo você encontrará uma séris de _imports comentados_. Para carregar
-diferentes fontes de dados, você deverá "descomentar" estos _imports_. Cada um
-destes _imports_ criará uma variável `data` com os dados correspondentes à fonte
-escolhida.
-
-Por exemplo, se "descomentamos" a seguinte linha:
-
-```js
-// import data from './data/pokemon/pokemon.js';
-```
-
-A linha ficaria assim:
-
-```js
-import data from './data/pokemon/pokemon.js';
-```
-
-E agora teríamos a variável `data` disponível em `src/main.js`.
-
-### `src/data.js`
-
-O coração deste projeto é a manipulação de dados através de arrays e objetos.
-
-Recomendamos que este arquivo contenha toda a funcionalidade que corresponda a
-obter, processar e manipular dados (suas funções):
-
-* `filterData(data, condition)`: esta função receberia os dados e nos retornaria
-  os que cumprem com a condição.
-
-* `sortData(data, sortBy, sortOrder)`: esta função recebe três parâmetros. O
-  primeiro, `data`, nos entrega os dados. O segundo, `sortBy`, diz respeito a
-  qual das informações quer usar para ordenar. O terceiro, `sortOrder`, indica
-  se quer ordenar de maneira crescente ou decrescente.
-
-* `computeStats(data)`: essa função nos permite fazer cálculos estatísticos
-  básicos para serem exibidos de acordo com o que os dados permitem.
-
-Estes nomes de funções e parâmetros são somente referência, o que vocês decidir
-utilizar vai depender da sua implementação.
-
-Estas funções devem ser
-[_puras_](https://imasters.com.br/desenvolvimento/serie-js-e-vida-pure-functions-funcoes-puras)
-e independentes do DOM. Estas funções serão depois usadas a partir do arquivo
-`src/main.js`, ao carregar a página e a cada vez que o usuário interagir com a
-interface (cliques, seleções, filtros, ordenação, etc).
-
-### `src/data`
-
-Nesta pasta estão os dados de diferentes fontes. Você vai encontrar uma pasta
-para cada fonte, e dentro de cada pasta estão dois arquivos: um com a extensão
-`.js` e outro `.json`. Ambos os arquivos contém os mesmos dados; a diferença é
-que podemos usar o `.js` com uma tag `<script>`, enquanto o `.json` servirá
-para, opcionalmnente, ser carregado de forma assíncrona com
-[`fetch()`](https://developer.mozilla.org/pt-br/docs/Web/API/Fetch_API) (ver
-seção da [_Parte Opcional_](#6-hacker-edition)).
-
-### `test/data.spec.js`
-
-Você também deverá fazer os teste unitários das funções implementadas no arquivo
-`data.js`.
+## table of contents
+
+* [1. what it is](#1-what-it-is)
+* [2. why it is](#2-why-it-is)
+* [3. how it works](#3-how-it-works)
+* [4. how it was made](#4-how-it-was-made)
+* [5. fun facts](#5-fun-facts)
 
 ***
 
-## 8. Pistas, dicas e leituras complementares
+## 1. what it is
 
-### Primeiros passos
-
-Antes de começar a escrever o código, você deve definir seu produto com base no
-conhecimento que puder obter a respeito de seus usuários. Estas perguntas podem
-ajudar:
-
-* Quem são os usuários principais do produto?
-* Quais são os objetivos dos usuários com relação ao produto?
-* Quais são os dados mais relevantes que querem ver na interface e por quê?
-* Quando utilizam ou utilizariam o produto?
-* Toda sua investigação prévia deve ter como resultado as histórias de usuário
-  de seu projeto.
-* Não faça os protótipos de alta fidelidade de todas as suas histórias. Comece
-  somente pela que necessite para seu Sprint 1.
-
-Quando estiver pronta para codar, sugerimos começar desta forma:
-
-1. Uma das integrantes da dupla deve fazer um :fork_and_knife:
-   [fork](https://help.github.com/articles/fork-a-repo/) do repositório de sua
-   turma (a equipe de formação fornecerá o link). A outra integrante da dupla
-   deve fazer um fork **a partir do repositório de sua companheira** e
-   [configurar](https://gist.github.com/BCasal/026e4c7f5c71418485c1) um `remote`
-   a partir dele.
-
-2. :arrow_down: [Clona](https://help.github.com/articles/cloning-a-repository/)
-   seu _fork_ para seu computador (cópia local).
-
-3. Instale as dependências do projeto com o comando `npm install`, assumindo que
-   já tenha instalado o [Node.js](https://nodejs.org/) (que inclui
-   [npm](https://docs.npmjs.com/)).
-
-4. Se tudo correr bem, deve ser capaz de executar os :traffic_light: testes
-   unitários (unit tests) com o comando `npm test`.
-
-5. Para ver a interface de seu programa no navegador, utilize o comando `npm
-   start` para subir o servidor web no endereço `http://localhost:5000`.
-
-6. Comece a codar! :rocket:
+this was a learning project based on the [laboratoria coding bootcamp](https://www.laboratoria.la/)'s [second assignment for the sap005 class](https://github.com/Laboratoria/SAP005-data-lovers); as with the [previous project](https://github.com/saoricake/caesarspoilers), i am not in that class, but my sister is, and she assigned this one to me as a learning exercise.
 
 ***
 
-### Conteúdo de referência
+## 2. why it is
 
-#### UX Design (Experiência do usuário)
-
-* Pesquisa com usuarios / entrevistas
-* Princípios de design/UI
-
-#### Desenvolvimento Front-End
-
-* Unidade de testes do curso de JavaScript do LMS.
-* Unidade de arrays do curso de JavaScript do LMS.
-* Unidade de objetos do curso de JavaScript do LMS.
-* Unidade de funções do curso de JavaScript do LMS.
-* Unidade de DOM do curso de JavaScript do LMS.
-* [Array no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array)
-* [Array.sort no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-* [Array.map no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-* [Array.filter no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filtro)
-* [Array.reduce no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-* [Array.forEach no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-* [Object.keys no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
-* [Object.entries no
-  MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
-* [Fetch API no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-* [json.org](https://json.org/json-pt.html)
-* [expressions-vs-statements](https://2ality.com/2012/09/expressions-vs-statements.html)
-* [Tipos de Dados](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures)
-* [Modulos:
-  Export](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/export)
-* [Modulos:
-  Import](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/import)
-
-#### Ferramentas
-
-* [Git](https://git-scm.com/)
-* [GitHub](https://github.com/)
-* [GitHub Pages](https://pages.github.com/)
-* [Node.js](https://nodejs.org/)
-* [Jest](https://jestjs.io/)
-
-#### Organização do trabalho
-
-* [Histórias de Usuário](https://www.youtube.com/watch?v=sEtiCJfXTE8)
-* [Definição de pronto](https://www.youtube.com/watch?v=Kfss63Q42F8)
-* [Critérios de
-  aceitação](https://medium.com/@karladiasn/user-stories-e-crit%C3%A9rios-de-aceita%C3%A7%C3%A3o-317c48403fcd)
-* [Guia para Data
-  Lovers](https://docs.google.com/presentation/d/1bOq8ns5wsvXdksdqYL3aQoxzFQsXTVlyvlV-yxI2oBM/present?token=AC4w5VhHBbEEA9u2w8bm3Ey1Cse349frbg%3A1567540902700&includes_info_params=1&eisi=CM_ytPW4teQCFQrJgQodeTcEZg#slide=id.g5282e1a53f_1_106)
+as a regular fgo player, i often find myself needing to look up craft essences (which are items your characters can equip in the game) by which effects or stats they have. and there are wikis and such out there that include comprehensive lists of all the CEs in the game, but none of them really allow for the fine-grained sorting and filtering that i had in mind... so i figured, hey, i'll make a db with all the features i want myself!
 
 ***
 
-## 9. Checklist
+## 3. how it works
 
-* [ ] Usar VanillaJS.
-* [ ] Não utilizar `this`.
-* [ ] Passa pelo linter (`npm run pretest`)
-* [ ] Passa pelos testes (`npm test`)
-* [ ] Testes unitários cobrem um mínimo de 70% de statements, functions, lines e
-  branches.
-* [ ] Inclui uma _definição de produto_ clara e informativa no `README.md`.
-* [ ] Inclui histórias de usuário no `README.md`.
-* [ ] Inclui rascunho da solução (protótipo de baixa fidelidade) no `README.md`.
-* [ ] Inclui uma lista de problemas detectados nos testes de usabilidade no
-  `README.md`.
-* [ ] UI: Mostra lista/tabela/etc com dados e/ou indicadores.
-* [ ] UI: Permite ordenar dados por um ou mais campos (asc e desc).
-* [ ] UI: Permite filtrar dados com base em uma condição.
-* [ ] UI: É _responsivo_.
+well, it's a table; there's not much to explain. you can filter CEs by name, rarity, or stats by using the little section on the left side, and sort the order they're shown in by clicking the appropriate column header (except for skill... allowing for that would've taken more time than i had to work on this). note that each subsequent sort is made starting from the current order the table's in, so you can sort based on multiple parameters by clicking more than one header! (e.g. click the max hp header, followed by the rarity one, to have the CEs sorted by rarity, with ones of the same rarity being sorted by max hp)
+
+***
+
+## 4. how it was made
+
+this project was created with the following:
+
+resources:
+* [css tricks](https://css-tricks.com/)
+* [mdn web docs](https://developer.mozilla.org/en-US/)
+
+tools:
+* [git](https://git-scm.com/)
+* [github](https://github.com/)
+* [visual studio code](https://code.visualstudio.com/)
+
+languages:
+* [html](https://developer.mozilla.org/en-US/docs/Web/HTML)
+	- elements:
+	[`a`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a),
+	[`body`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body),
+	[`button`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button),
+	[`div`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div),
+	[`fieldset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset),
+	[`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form),
+	[`head`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head),
+	[`html`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html),
+	[`input`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input),
+	[`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label),
+	[`legend`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/legend),
+	[`link`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link),
+	[`meta`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta),
+	[`option`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option),
+	[`p`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p),
+	[`script`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script),
+	[`select`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select),
+	[`style`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style),
+	[`table`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table),
+	[`tbody`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody),
+	[`td`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td),
+	[`th`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th),
+	[`thead`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead),
+	[`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title),
+	[`tr`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
+* [css](https://developer.mozilla.org/en-US/docs/Web/CSS)
+	- once again i will not list every css property i used here
+* [javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+	- built-in objects:
+	[`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object),
+	[`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function),
+	[`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String),
+	[`String.raw()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/raw),
+	[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp),
+	[`RegExp()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/RegExp),
+	[`RegExp.prototype.test()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test),
+	[`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array),
+	[`Array.from()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from),
+	[`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach),
+	[`Array.prototype.join()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join),
+	[`Array.prototype.pop()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop),
+	[`Array.prototype.sort()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort),
+	[`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set),
+	[`Set()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set),
+	[`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise),
+	[`Promise.prototype.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then),
+	[`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl),
+	[`Intl.Collator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator),
+	[`Intl.Collator()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator),
+	[`Intl.Collator.prototype.compare()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/compare)
+	- statements and declarations:
+	[`Block`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block),
+	[`if...else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else),
+	[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let),
+	[`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const),
+	[`function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function),
+	[`async function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function),
+	[`return`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return),
+	[`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export),
+	[`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+	- expressions and operators:
+	[function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function),
+	[async function exression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/async_function),
+	[object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer),
+	[grouping operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Grouping),
+	[property accessors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors),
+	[new operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new),
+	[addition operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Addition),
+	[subtraction operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Subtraction),
+	[equality operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality),
+	[strict equality operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality),
+	[bitwise AND](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND),
+	[logical AND](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND),
+	[conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator),
+	[assignment operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment),
+	[comma operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comma_Operator),
+	[await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
+	- web apis:
+	[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API),
+	[`WindowOrWorkerGlobalScope.fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch),
+	[`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document),
+	[`Document.forms`](https://developer.mozilla.org/en-US/docs/Web/API/Document/forms),
+	[`Document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector),
+	[`Document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll),
+	[`DOMTokenList`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList),
+	[`DOMTokenList.contains()`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/contains),
+	[`DOMTokenList.add()`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/add),
+	[`DOMTokenList.remove()`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove),
+	[`DOMTokenList.toggle()`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle),
+	[`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element),
+	[`Element.classList`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList),
+	[`Element.insertAdjacentHTML()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML),
+	[`Element`: `keydown` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event),
+	[`Element`: `click` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event),
+	[`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event),
+	[`Event.target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target),
+	[`Event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault),
+	[`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget),
+	[`EventTarget.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener),
+	[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData),
+	[`FormData()`](https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData),
+	[`FormData.get()`](https://developer.mozilla.org/en-US/docs/Web/API/FormData/get),
+	[`FormData.getAll()`](https://developer.mozilla.org/en-US/docs/Web/API/FormData/getAll),
+	[`HTMLCollection`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection),
+	[`HTMLCollection.item()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection/item),
+	[`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement),
+	[`HTMLElement`: `input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event),
+	[`HTMLFormControlsCollection`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection),
+	[`HTMLFormControlsCollection.namedItem()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem),
+	[`HTMLFormElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement),
+	[`HTMLFormElement.elements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements),
+	[`HTMLFormElement`: `submit` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event),
+	[`HTMLTableCellElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableCellElement),
+	`HTMLTableCellElement.cellIndex`,
+	[`HTMLTableElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement),
+	[`HTMLTableElement.tHead`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/tHead),
+	[`HTMLTableElement.tBodies`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/tBodies),
+	[`HTMLTableRowElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableRowElement),
+	`HTMLTableRowElement.cells`,
+	[`HTMLTableSectionElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableSectionElement),
+	`HTMLTableSectionElement.rows`,
+	[`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent),
+	[`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key),
+	[`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node),
+	[`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent),
+	[`Node.appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+
+additionally, the completion checklist from the original repository is copied here for future reference:
+(and yeah i didn't fulfill a lot of the completion objectives... oops)
+
+> ### Parte Obrigatória
+
+> * [x] Usar VanillaJS.
+> * [x] Não utilizar `this`.
+> * [ ] Passa pelo linter (`npm run pretest`)
+> * [ ] Passa pelos testes (`npm test`)
+> * [ ] Testes unitários cobrem um mínimo de 70% de statements, functions, lines e branches.
+> * [x] Inclui uma _definição de produto_ clara e informativa no `README.md`.
+> * [ ] Inclui histórias de usuário no `README.md`.
+> * [ ] Inclui rascunho da solução (protótipo de baixa fidelidade) no `README.md`.
+> * [ ] Inclui uma lista de problemas detectados nos testes de usabilidade no `README.md`.
+> * [x] UI: Mostra lista/tabela/etc com dados e/ou indicadores.
+> * [x] UI: Permite ordenar dados por um ou mais campos (asc e desc).
+> * [x] UI: Permite filtrar dados com base em uma condição.
+> * [ ] UI: É _responsivo_.
+
+***
+
+## 5. fun facts
+
+1. as it turns out, both pure html tables and css grids have their limitations when it comes to building a table to show tabular data... html tables are awful to style, while the (as of the time of this writing) lack of subgrid support in the vast majority of browsers forces you to use `display: contents` on the table's `thead`, `tbody`, and `tr` elements, and that introduces its own styling and accessibility problems. please implement subgrid already, browsers!!
+2. for filtering and sorting the table, it's best to only get the data from the database once, and then hide, show, and reorder the table elements themselves as needed. getting all the data every time you need to change the table is really slow and probably network intensive for the database, too
+3. as with the previous project, i feel like having several functions as modules in a separate js file just adds needless complexity and annoyances to the project... ah well
+4. you might have noticed that only CEs from fgo's first year are included here. the reason for that is because... well, as it turns out, json files can get pretty damn huge if they have a lot of stuff in them, to the point that even my gamer pc struggled to load the entire thing in a timely manner
