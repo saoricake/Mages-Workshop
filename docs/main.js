@@ -1,4 +1,4 @@
-import {filterData, sortData, computeStats} from './data.js';
+import {filterData, sortData} from './data.js';
 
 const form = document.forms[0];
 const table = document.querySelector("table");
@@ -30,7 +30,7 @@ const database = fetch("./data/nice_equip.json").then(r => r.json());
 		const newTableRow =
 		`<tr>
 			<td>${params[0]}</td>
-			<td><img src=${params[1]} loading="lazy" height=30>${params[2]}</td>
+			<td><img src=${params[1]} loading="lazy" height=30><span>${params[2]}</span></td>
 			<td>${params[3]}</td>
 			<td>${params[4]}</td>
 			<td>${params[5]}</td>

@@ -1,21 +1,28 @@
+/* General */
+
 :root {
 	font-family: sans-serif;
 	font-size: 14px;
 }
-
 body {
 	display: grid;
-		align-items: start;
-		gap: 8px;
-		grid-template-columns: max-content 1fr;
+		grid-template-columns: max-content min(100%, 900px);
+		place-content: space-evenly;
+		place-items: start center;
+		gap: 1rem;
+	margin: 1rem;
 }
+
+
+
+/* Form */
 
 form {
 	display: grid;
 		grid-template-columns: repeat(2, max-content);
 		grid-template-rows: repeat(3, max-content);
 	position: sticky;
-	top: 8px;
+		top: 1rem;
 }
 
 form > label {
@@ -63,80 +70,84 @@ fieldset:last-of-type {
 		grid-template-rows: repeat(4, 1fr);
 }
 
+
+
+/* Table */
+
 table {
 	display: grid;
 		grid-template-columns: max-content minmax(min-content, 1fr) repeat(6, max-content);
-	justify-self: center;
-	width: min(100%, 900px);
+}
+thead,
+tbody,
+tr {
+	grid-column: 1 / span 8;
+	display: grid;
+		grid-template-columns: subgrid;
 }
 
-thead, tbody, tr {
-	display: contents;
-}
-
-tr.zebra td {
-	background-color: #F5F5F5;
-}
-
-tr.hidden {
-	display: none;
-}
-
-th, td {
-	margin-bottom: -1px;
-	margin-right: -1px;
-}
-
-th {
-	color: white;
-	background-color: #1F2F4F;
-	padding: 0.75rem 0.5rem;
+thead {
 	position: sticky;
+		top: 0;
+}
+th {
+	padding: 0.75rem 0.5rem;
+	background-color: #1F2F4F;
+	color: white;
 	text-align: start;
-	top: 0;
-	user-select: none;
 	white-space: nowrap;
+	user-select: none;
 }
 
 th:not(:last-child) {
 	cursor: pointer;
 }
-
 th:not(:last-child):hover,
 th:not(:last-child):focus {
 	background-color: #4F5F7F;
 }
 
 th::after {
-	content: "";
-	float: right;
 	margin-left: 0.25rem;
 	width: 1rem;
+	content: "";
+	float: right;
 }
-
 th.sortTarget::after {
 	content: "\25BC";
 }
-
 th.sortTarget.sortDesc::after {
 	content: "\25B2";
 }
 
+tbody {
+	gap: 1px;
+	padding: 0 1px 1px 1px;
+	background-color: #DCDCDC;
+}
+tr:not(.zebra) td {
+	background-color: #FFFFFF;
+}
+tr.zebra td {
+	background-color: #F5F5F5;
+}
+tr.hidden {
+	display: none;
+}
 td {
 	display: flex;
 		align-items: center;
 		justify-content: center;
-	background-color: #FFFFFF;
-	border: 1px solid #DCDCDC;
+	padding: 0;
 	text-align: center;
 }
-
 td:nth-child(2) {
 	justify-content: flex-start;
-	padding-right: 0.5rem;
 	text-align: left;
 }
-
 img {
 	margin: 0.5rem;
+}
+span {
+	margin-right: 0.5rem;
 }
