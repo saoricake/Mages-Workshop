@@ -113,10 +113,10 @@ th::after {
 	content: "";
 	float: right;
 }
-th.sortTarget::after {
+th.sortBasis::after {
 	content: "\25BC";
 }
-th.sortTarget.sortDesc::after {
+th.sortBasis.sortDesc::after {
 	content: "\25B2";
 }
 
