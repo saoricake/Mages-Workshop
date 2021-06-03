@@ -6,8 +6,8 @@
 }
 body {
 	display: grid;
-		grid-template-columns: max-content min(100%, 900px);
-		place-content: space-evenly;
+		grid-template-columns: max-content 1fr;
+		grid-template-rows: 1fr;
 		place-items: start center;
 		gap: 1rem;
 	margin: 1rem;
@@ -20,54 +20,76 @@ body {
 form {
 	display: grid;
 		grid-template-columns: repeat(2, max-content);
-		grid-template-rows: repeat(3, max-content);
+		grid-auto-rows: max-content;
+		gap: 0 1rem;
 	position: sticky;
 		top: 1rem;
 }
-
-form > label {
-	background-color: #1F2F4F;
-	color: white;
-	font-weight: bold;
-	padding: 0.5rem;
-}
-
 fieldset {
 	all: unset;
-	border: 1px solid #DCDCDC;
-	margin-bottom: -1px;
+	display: grid;
+		grid-template-columns: subgrid;
 	padding: 0.5rem;
 }
-
 legend {
-	all: unset;
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-	width: 1px;
+	float: left;
+	color: #FFFFFF;
+	font-weight: bold;
 }
 
-input[type="text"] {
+.form-name {
+	grid-column: 1 / span 2;
+	grid-row: 1 / span 1;
+}
+.form-name .form-input-wrapper input {
 	box-sizing: border-box;
 	width: 100%;
 }
 
-fieldset:nth-of-type(2) {
+.form-rarity {
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 1;
+}
+.form-rarity .form-input-wrapper {
 	display: flex;
 		justify-content: space-between;
 }
-
-input[type="checkbox"] {
+.form-rarity .form-input-wrapper input {
 	margin: 0;
 	margin-right: 3px;
 	vertical-align: middle;
 }
 
-fieldset:last-of-type {
+.form-stats {
+	grid-column: 1 / span 2;
+	grid-row: 3 / span 1;
+}
+.form-stats .form-input-wrapper {
 	display: grid;
 		gap: 3px 1rem;
 		grid-template-columns: repeat(2, max-content);
 		grid-template-rows: repeat(4, 1fr);
+}
+
+.form-sortby {
+	grid-column: 1 / span 2;
+	grid-row: 4 / span 1;
+}
+
+form:after {
+	grid-column: 1 / span 1;
+	grid-row: 1 / span 4;
+	z-index: -1;
+	background-color: #1F2F4F;
+	margin-right: -0.6rem;
+	content: "";
+}
+
+.form-submit-button {
+	grid-column: 1 / span 2;
+	grid-row: 5 / span 1;
+	place-self: center;
+	margin: 0.5rem;
 }
 
 
@@ -99,25 +121,11 @@ th {
 	user-select: none;
 }
 
-th:not(:last-child) {
-	cursor: pointer;
-}
-th:not(:last-child):hover,
-th:not(:last-child):focus {
-	background-color: #4F5F7F;
-}
-
 th::after {
 	margin-left: 0.25rem;
 	width: 1rem;
 	content: "";
 	float: right;
-}
-th.sortBasis::after {
-	content: "\25BC";
-}
-th.sortBasis.sortDesc::after {
-	content: "\25B2";
 }
 
 tbody {
@@ -125,14 +133,11 @@ tbody {
 	padding: 0 1px 1px 1px;
 	background-color: #DCDCDC;
 }
-tr:not(.zebra) td {
+tr td {
 	background-color: #FFFFFF;
 }
-tr.zebra td {
+tr:nth-of-type(even) td {
 	background-color: #F5F5F5;
-}
-tr.hidden {
-	display: none;
 }
 td {
 	display: flex;
